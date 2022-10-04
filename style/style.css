@@ -9,6 +9,12 @@
   user-select: none !important;
 }
 
+.heading {
+  text-align: center;
+  margin: 20px 0;
+  color: #1bd31a;
+}
+
 .container {
   width: 688px;
   margin: 20px auto;

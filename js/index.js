@@ -1,8 +1,4 @@
-const textList = [
-  `Lorem ipsum dolor sit amet consectetur adit asperiores`,
-  `Lorem i sit amet consectetur adit asperiores2`,
-  `Lorem ipsum dolor sit amet consectetur adit asperiores3`,
-];
+import textList from "./data.json" assert { type: "json" };
 
 let [defaultMinutes, defaultSec] = [0, 0];
 // Target all time
@@ -13,13 +9,13 @@ const input = document.getElementById("input");
 const btn = document.getElementById("btn");
 // Text
 const text = document.getElementById("text");
-text.innerHTML = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente dicta porro id ipsa voluptates illo sint maiores eveniet ut asperiores.`;
+text.innerHTML =
+  textList[Math.round(Math.random() * textList.length - 1)].quote;
 
 let miliSec = null;
 let sec = null;
 let minute = null;
 let hour = null;
-let start = false;
 
 input.addEventListener("input", () => {
   if (text.innerHTML.length !== input.value.length) {
@@ -39,7 +35,7 @@ input.addEventListener("input", () => {
 // Initial value null and after click the start button the value will be setInterval
 
 // Toggle button means start and stop occurs just click single button
-const toggle = () => {
+btn.addEventListener("click", () => {
   if (btn.innerHTML === "Start") {
     btn.innerHTML = "Submit";
     seconds.innerHTML = "00";
@@ -57,10 +53,11 @@ const toggle = () => {
     clearInterval(minute);
     clearInterval(hour);
     btn.innerHTML = "Start";
-    text.innerHTML = textList[Math.round(Math.random() * textList.length - 1)];
+    text.innerHTML =
+      textList[Math.round(Math.random() * textList.length - 1)].quote;
     input.setAttribute("disabled", true);
   }
-};
+});
 
 function secFunc() {
   if (defaultSec === 59) {
@@ -77,3 +74,5 @@ function minuteFunc() {
   defaultMinutes++;
   minutes.innerHTML = defaultMinutes;
 }
+// user  can't do right click
+document.addEventListener("contextmenu", (event) => event.preventDefault());
